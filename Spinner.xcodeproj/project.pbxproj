@@ -13,6 +13,11 @@
 		D0A03CE914FA26D500BA306F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0A03CE714FA26D500BA306F /* InfoPlist.strings */; };
 		D0A03CEB14FA26D500BA306F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A03CEA14FA26D500BA306F /* main.m */; };
 		D0A03CEF14FA26D500BA306F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A03CEE14FA26D500BA306F /* AppDelegate.m */; };
+		D0A03CF914FA26F600BA306F /* containerImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A03CF714FA26F600BA306F /* containerImage@2x.png */; };
+		D0A03CFA14FA26F600BA306F /* spinner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A03CF814FA26F600BA306F /* spinner@2x.png */; };
+		D0A03CFE14FA271D00BA306F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A03CFD14FA271D00BA306F /* RootViewController.m */; };
+		D0A03D0214FA274A00BA306F /* RootView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A03D0114FA274A00BA306F /* RootView.m */; };
+		D0A03D0614FA281500BA306F /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A03D0514FA281500BA306F /* Spinner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +25,20 @@
 		D0A03CDE14FA26D500BA306F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D0A03CE014FA26D500BA306F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D0A03CE214FA26D500BA306F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D0A03CE614FA26D500BA306F /* Spinner-Info.plist */ = {isa = PBXFileReference; path = "Spinner-Info.plist"; sourceTree = "<group>"; };
+		D0A03CE614FA26D500BA306F /* Spinner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Spinner-Info.plist"; sourceTree = "<group>"; };
 		D0A03CE814FA26D500BA306F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0A03CEA14FA26D500BA306F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D0A03CEC14FA26D500BA306F /* Spinner-Prefix.pch */ = {isa = PBXFileReference; path = "Spinner-Prefix.pch"; sourceTree = "<group>"; };
-		D0A03CED14FA26D500BA306F /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0A03CEC14FA26D500BA306F /* Spinner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spinner-Prefix.pch"; sourceTree = "<group>"; };
+		D0A03CED14FA26D500BA306F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D0A03CEE14FA26D500BA306F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D0A03CF714FA26F600BA306F /* containerImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "containerImage@2x.png"; sourceTree = "<group>"; };
+		D0A03CF814FA26F600BA306F /* spinner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner@2x.png"; sourceTree = "<group>"; };
+		D0A03CFC14FA271D00BA306F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		D0A03CFD14FA271D00BA306F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		D0A03D0014FA274A00BA306F /* RootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootView.h; sourceTree = "<group>"; };
+		D0A03D0114FA274A00BA306F /* RootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootView.m; sourceTree = "<group>"; };
+		D0A03D0414FA281500BA306F /* Spinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spinner.h; sourceTree = "<group>"; };
+		D0A03D0514FA281500BA306F /* Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spinner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +85,10 @@
 		D0A03CE414FA26D500BA306F /* Spinner */ = {
 			isa = PBXGroup;
 			children = (
-				D0A03CED14FA26D500BA306F /* AppDelegate.h */,
-				D0A03CEE14FA26D500BA306F /* AppDelegate.m */,
+				D0A03D0314FA280200BA306F /* Spinner */,
+				D0A03CFB14FA26FA00BA306F /* RootViewController */,
+				D0A03CF614FA26EC00BA306F /* Assets */,
+				D0A03CF514FA26DE00BA306F /* ApplicationDelegate */,
 				D0A03CE514FA26D500BA306F /* Supporting Files */,
 			);
 			path = Spinner;
@@ -88,6 +103,52 @@
 				D0A03CEC14FA26D500BA306F /* Spinner-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D0A03CF514FA26DE00BA306F /* ApplicationDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				D0A03CED14FA26D500BA306F /* AppDelegate.h */,
+				D0A03CEE14FA26D500BA306F /* AppDelegate.m */,
+			);
+			name = ApplicationDelegate;
+			sourceTree = "<group>";
+		};
+		D0A03CF614FA26EC00BA306F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D0A03CF714FA26F600BA306F /* containerImage@2x.png */,
+				D0A03CF814FA26F600BA306F /* spinner@2x.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		D0A03CFB14FA26FA00BA306F /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D0A03CFF14FA273900BA306F /* RootView */,
+				D0A03CFC14FA271D00BA306F /* RootViewController.h */,
+				D0A03CFD14FA271D00BA306F /* RootViewController.m */,
+			);
+			name = RootViewController;
+			sourceTree = "<group>";
+		};
+		D0A03CFF14FA273900BA306F /* RootView */ = {
+			isa = PBXGroup;
+			children = (
+				D0A03D0014FA274A00BA306F /* RootView.h */,
+				D0A03D0114FA274A00BA306F /* RootView.m */,
+			);
+			name = RootView;
+			sourceTree = "<group>";
+		};
+		D0A03D0314FA280200BA306F /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				D0A03D0414FA281500BA306F /* Spinner.h */,
+				D0A03D0514FA281500BA306F /* Spinner.m */,
+			);
+			name = Spinner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0A03CE914FA26D500BA306F /* InfoPlist.strings in Resources */,
+				D0A03CF914FA26F600BA306F /* containerImage@2x.png in Resources */,
+				D0A03CFA14FA26F600BA306F /* spinner@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +217,9 @@
 			files = (
 				D0A03CEB14FA26D500BA306F /* main.m in Sources */,
 				D0A03CEF14FA26D500BA306F /* AppDelegate.m in Sources */,
+				D0A03CFE14FA271D00BA306F /* RootViewController.m in Sources */,
+				D0A03D0214FA274A00BA306F /* RootView.m in Sources */,
+				D0A03D0614FA281500BA306F /* Spinner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
