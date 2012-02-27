@@ -7,9 +7,7 @@
 //
 
 #import "Spinner.h"
-#import "UIImage+RotationExtension.h"
 #import "ARCMacros.h"
-#import <objc/runtime.h>
 
 #define DegreesToRadians(degrees) degrees * M_PI / 180
 #define RadiansToDegrees(radians) radians * 180/M_PI

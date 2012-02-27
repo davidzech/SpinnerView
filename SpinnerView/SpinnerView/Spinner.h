@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIImage+RotationExtension.h"
 
 @interface Spinner : UIView {
 

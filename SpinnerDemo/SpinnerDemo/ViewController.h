@@ -12,5 +12,11 @@
 @interface ViewController : UIViewController
 {
     SpinnerView *spinner;
+    NSTimer *timer;
 }
+
+-(IBAction)definitePressed:(id)sender;
+-(IBAction)indefinitePressed:(id)sender;
+
+@property (nonatomic, retain) NSTimer *timer;
 @end

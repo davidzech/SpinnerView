@@ -50,7 +50,9 @@
 -(void)startIndefiniteMode
 {
     //spinner.isIndefiniteMode = YES;
+    [self stopIndefiniteMode];
     spinner.progress = 99.9;
+    glowImageView.alpha = 1.0;
     [spinner startIndefiniteAnimation];
 }
 
