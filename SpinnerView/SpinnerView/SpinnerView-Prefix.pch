@@ -5,5 +5,5 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
-    #define SVBundleImage(_file) [UIImage imageWithContentsOfFile:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"SpinnerView.bundle"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@.png", _file,  ((int)[[UIScreen mainScreen] scale]-1) ? @"@2x" : @""]]]
+    #define SV_BUNDLE_IMAGE(_file) [UIImage imageWithContentsOfFile:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"SpinnerView.bundle"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@.png", _file,  ((int)[[UIScreen mainScreen] scale]-1) ? @"@2x" : @""]]]
 #endif

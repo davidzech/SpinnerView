@@ -9,23 +9,31 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+
+@property (nonatomic, retain) NSTimer *timer;
+
 -(void)updateSpinner:(NSTimer*)timer;
+
 @end
 
 @implementation ViewController
+@synthesize spinnerView;
 @synthesize timer;
 
--(void)updateSpinner:(NSTimer *)timer
+#pragma mark - Initialization
+
+-(void)dealloc
 {
-    CGFloat progress = spinner.progress;
-    progress += 1.0f;
-    spinner.progress = progress > 100.0f ? progress-100.0f : progress;
+    [timer invalidate];
+    [timer release];
+    [spinnerView release];
+    [super dealloc];
 }
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad
 {
-    spinner = [[SpinnerView alloc] initWithFrame:CGRectMake(20, 20, 0, 0)];
-    [self.view addSubview:spinner];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -33,6 +41,7 @@
 
 - (void)viewDidUnload
 {
+    [self setSpinnerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -42,20 +51,20 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
--(void)dealloc
+#pragma mark - Timer Action
+
+-(void)updateSpinner:(NSTimer *)timer
 {
-    [timer invalidate];
-    [timer release];
-    [spinner release];
-    [super dealloc];
+    CGFloat progress = spinnerView.progress;
+    progress += 1.0f;
+    spinnerView.progress = progress > 100.0f ? progress-100.0f : progress;
 }
 
-
-#pragma mark - ib actions
+#pragma mark - Actions
 
 -(void)definitePressed:(id)sender
 {
-    [spinner stopAnimating];
+    [spinnerView stopAnimating];
     [timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
 }
@@ -64,7 +73,7 @@
 {
     [timer invalidate];
     self.timer = nil;
-    [spinner startAnimating];
+    [spinnerView startAnimating];
 }
 
 @end

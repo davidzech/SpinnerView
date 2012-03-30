@@ -33,14 +33,15 @@
     return [self initWithFrame:CGRectZero];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+-(id)initWithCoder:(NSCoder *)aDecoder {
     
-    UIImage *containerImage = SVBundleImage(@"containerImage");
-    UIImage *glowImage = SVBundleImage(@"glow");
-    self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, glowImage.size.width, glowImage.size.height)];
+    self = [super initWithCoder:aDecoder];
+    
     if (self) {
-        // Initialization code
+            
+        UIImage *containerImage = SV_BUNDLE_IMAGE(@"containerImage");
+        UIImage *glowImage = SV_BUNDLE_IMAGE(@"glow");
+        
         containerImageView = [[UIImageView alloc] initWithImage:containerImage];
         glowImageView = [[UIImageView alloc] initWithImage:glowImage];
         glowImageView.frame = CGRectMake(0,0, CGRectGetWidth(glowImageView.frame), CGRectGetHeight(glowImageView.frame));
@@ -51,10 +52,40 @@
         CGRect containerRect = containerImageView.frame;
         
         containerImageView.frame = CGRectMake(CGRectGetWidth(glowRect)/2-CGRectGetWidth(containerRect)/2, CGRectGetHeight(glowRect)/2-CGRectGetHeight(containerRect)/2, CGRectGetWidth(containerRect), CGRectGetHeight(containerRect));
-        //[glowImageView addSubview:containerImageView];
+        
         [containerImageView addSubview:spinner];
         [self addSubview:glowImageView];
         [self insertSubview:containerImageView aboveSubview:glowImageView];
+    }
+    
+    return  self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+
+    UIImage *containerImage = SV_BUNDLE_IMAGE(@"containerImage");
+    UIImage *glowImage = SV_BUNDLE_IMAGE(@"glow");
+    
+    self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, glowImage.size.width, glowImage.size.height)];
+    
+    if (self) {
+
+        containerImageView = [[UIImageView alloc] initWithImage:containerImage];
+        glowImageView = [[UIImageView alloc] initWithImage:glowImage];
+        glowImageView.frame = CGRectMake(0,0, CGRectGetWidth(glowImageView.frame), CGRectGetHeight(glowImageView.frame));
+        spinner = [Spinner new];
+        spinner.frame = CGRectMake(0.5f, 0.5f, CGRectGetWidth(spinner.frame), CGRectGetHeight(spinner.frame));
+        containerImageView.alpha = 0.8;
+        CGRect glowRect = glowImageView.frame;
+        CGRect containerRect = containerImageView.frame;
+        
+        containerImageView.frame = CGRectMake(CGRectGetWidth(glowRect)/2-CGRectGetWidth(containerRect)/2, CGRectGetHeight(glowRect)/2-CGRectGetHeight(containerRect)/2, CGRectGetWidth(containerRect), CGRectGetHeight(containerRect));
+        
+        [containerImageView addSubview:spinner];
+        [self addSubview:glowImageView];
+        [self insertSubview:containerImageView aboveSubview:glowImageView];
+        
     }
     return self;
 }

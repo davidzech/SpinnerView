@@ -32,13 +32,13 @@
 - (id)init
 {
     
-    UIImage *containerImage = SVBundleImage(@"containerImage");
+    UIImage *containerImage = SV_BUNDLE_IMAGE(@"containerImage");
     
     self = [super initWithFrame:CGRectMake(0.0f, 0.0f, containerImage.size.width, containerImage.size.height)];
     if (self) {
         
         self.backgroundColor = [UIColor clearColor];
-        self.spinnerImage = SAFE_ARC_RETAIN(SVBundleImage(@"spinner"));
+        self.spinnerImage = SAFE_ARC_RETAIN(SV_BUNDLE_IMAGE(@"spinner"));
         
         
     }
@@ -82,11 +82,10 @@
 
 #pragma mark - Drawing
 
-UIImage *rotateImageByDegrees(UIImage *image, CGFloat degrees)
+-(UIImage *)rotateImage:(UIImage *)image byDegrees:(CGFloat)degrees
 {
         // Create the bitmap context
-        UIImage* self = image;
-        CGSize size = CGSizeMake(self.size.width *self.scale, self.size.height *self.scale);
+        CGSize size = CGSizeMake(image.size.width * image.scale, image.size.height * image.scale);
         UIGraphicsBeginImageContext(size);
         CGContextRef bitmap = UIGraphicsGetCurrentContext();
         
@@ -98,16 +97,16 @@ UIImage *rotateImageByDegrees(UIImage *image, CGFloat degrees)
         
         // Now, draw the rotated/scaled image into the context
         CGContextScaleCTM(bitmap, 1.0, -1.0);
-        CGContextDrawImage(bitmap, CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height), [self CGImage]);
+        CGContextDrawImage(bitmap, CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height), [image CGImage]);
         
         UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         return newImage;
 }
 
-UIImage *rotateImageByRadians(UIImage *image, CGFloat radians)
+-(UIImage *)rotateImage:(UIImage *)image byRadians:(CGFloat)radians
 {
-    return rotateImageByDegrees(image, RadiansToDegrees(radians));
+    return [self rotateImage:image byDegrees:RadiansToDegrees(radians)];
 }
 
 -(void)rotate
@@ -145,9 +144,10 @@ UIImage *rotateImageByRadians(UIImage *image, CGFloat radians)
     float progress = 0.75 + (_progress/400);
    
      
+    UIImage *rotatedImage = [self rotateImage:self.spinnerImage byRadians:((_progress/100) *360) *(M_PI/180)];
     
+    [rotatedImage drawInRect:rect blendMode:kCGBlendModeNormal alpha:([self isAnimating] ? 1.0 : progress)];
     
-    [rotateImageByRadians(self.spinnerImage, ((_progress/100) *360) *(M_PI/180)) drawInRect:rect blendMode:kCGBlendModeNormal alpha:[self isAnimating] ? 1.0 : progress];
 }
 
 -(void)dealloc
