@@ -17,6 +17,8 @@
 		47FE991714FAE0840076775C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FE991514FAE0840076775C /* ViewController.xib */; };
 		47FE998314FAF2B80076775C /* SpinnerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47FE998214FAF2B80076775C /* SpinnerView.bundle */; };
 		E2D703211525A3A5008C5B59 /* SpinnerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D703201525A3A5008C5B59 /* SpinnerView.framework */; };
+		E2D703301525AEEF008C5B59 /* classy_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = E2D7032F1525AEEF008C5B59 /* classy_fabric.png */; };
+		E2D703341525B0B2008C5B59 /* bo_play_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = E2D703331525B0B2008C5B59 /* bo_play_pattern.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		47FE991614FAE0840076775C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		47FE998214FAF2B80076775C /* SpinnerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SpinnerView.bundle; path = ../../Shared/SpinnerView.bundle; sourceTree = "<group>"; };
 		E2D703201525A3A5008C5B59 /* SpinnerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpinnerView.framework; path = ../SpinnerView/Products/SpinnerView.framework; sourceTree = "<group>"; };
+		E2D7032F1525AEEF008C5B59 /* classy_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classy_fabric.png; sourceTree = "<group>"; };
+		E2D703331525B0B2008C5B59 /* bo_play_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bo_play_pattern.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 		47FE998414FAF2BB0076775C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E2D703331525B0B2008C5B59 /* bo_play_pattern.png */,
+				E2D7032F1525AEEF008C5B59 /* classy_fabric.png */,
 				47FE998214FAF2B80076775C /* SpinnerView.bundle */,
 			);
 			name = Resources;
@@ -166,6 +172,8 @@
 				47FE990B14FAE0840076775C /* InfoPlist.strings in Resources */,
 				47FE991714FAE0840076775C /* ViewController.xib in Resources */,
 				47FE998314FAF2B80076775C /* SpinnerView.bundle in Resources */,
+				E2D703301525AEEF008C5B59 /* classy_fabric.png in Resources */,
+				E2D703341525B0B2008C5B59 /* bo_play_pattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

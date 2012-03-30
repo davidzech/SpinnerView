@@ -43,9 +43,13 @@
     
     [super viewDidLoad];
 	
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"classy_fabric.png"]]];
+    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
     
     [[self scrollView] setContentSize:CGSizeMake(320.0, 200)];
+    
+    [[self scrollView] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bo_play_pattern.png"]]];
 }
 
 - (void)viewDidUnload
