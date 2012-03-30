@@ -1,7 +1,7 @@
 SpinnerView
 ===========
 
-![Screenshot: Launch image](https://github.com/Flutt3rShy/SpinnerView/raw/master/screenshot.png)
+![Screenshot: Launch image](https://github.com/burtlo/SpinnerView/raw/master/screenshot.png)
 
 About
 -----
@@ -16,19 +16,26 @@ Create a SpinnerView object like a UIActivityIndicatorView - size is ignored in 
 
 Note: You should only interact with SpinnerView not it's subviews or anything else.
 
-	spinner = [[SpinnerView alloc] initWithFrame:CGRectMake(20, 20, 0, 0)];
-    [self.view addSubview:spinner];
+```
+spinner = [[SpinnerView alloc] initWithFrame:CGRectMake(20, 20, 0, 0)];
+[self.view addSubview:spinner];
+```
 
 use properties to set a definite progress ( 1.0f-100.0f)
-	
-	spinner.progress = $currentProgress;
+
+```
+spinner.progress = 66
+```
 	
 For indefinite activities use:
 
-	-(void)startIndefiniteMode;
-	-(void)stopIndefiniteMode;
-	
-	
+```
+[spinner startAnimating];
+
+[spinner stopAnimating];
+```	
+
+
 Credits
 -------
 
