@@ -9,30 +9,56 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+
+@property (nonatomic, retain) NSTimer *timer;
+
 -(void)updateSpinner:(NSTimer*)timer;
+
 @end
 
 @implementation ViewController
+@synthesize spinnerView;
+@synthesize scrollView;
+@synthesize scrollViewSpinner;
+@synthesize scrollOffset;
 @synthesize timer;
 
--(void)updateSpinner:(NSTimer *)timer
+#pragma mark - Initialization
+
+-(void)dealloc
 {
-    CGFloat progress = spinner.progress;
-    progress += 1.0f;
-    spinner.progress = progress > 100.0f ? progress-100.0f : progress;
+    [timer invalidate];
+    [timer release];
+    [spinnerView release];
+    [scrollView release];
+    [scrollViewSpinner release];
+    [scrollOffset release];
+    [super dealloc];
 }
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad
 {
-    spinner = [[SpinnerView alloc] initWithFrame:CGRectMake(20, 20, 0, 0)];
-    [self.view addSubview:spinner];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"classy_fabric.png"]]];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
+    
+    [[self scrollView] setContentSize:CGSizeMake(320.0, 200)];
+    
+    [[self scrollView] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bo_play_pattern.png"]]];
 }
 
 - (void)viewDidUnload
 {
+    [self setSpinnerView:nil];
+    [self setScrollView:nil];
+    [self setScrollViewSpinner:nil];
+    [self setScrollViewSpinner:nil];
+    [self setScrollOffset:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -42,20 +68,20 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
--(void)dealloc
+#pragma mark - Timer Action
+
+-(void)updateSpinner:(NSTimer *)timer
 {
-    [timer invalidate];
-    [timer release];
-    [spinner release];
-    [super dealloc];
+    CGFloat progress = spinnerView.progress;
+    progress += 1.0f;
+    spinnerView.progress = progress > 100.0f ? progress-100.0f : progress;
 }
 
-
-#pragma mark - ib actions
+#pragma mark - Actions
 
 -(void)definitePressed:(id)sender
 {
-    [spinner stopIndefiniteMode];
+    [spinnerView stopAnimating];
     [timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
 }
@@ -64,7 +90,19 @@
 {
     [timer invalidate];
     self.timer = nil;
-    [spinner startIndefiniteMode];
+    [spinnerView startAnimating];
+}
+
+
+#pragma mark - UIScrollViewDelegate Adherence
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView_ {
+    
+    CGFloat contentOffset = scrollView_.contentOffset.y;
+    
+    scrollViewSpinner.progress = fabs(contentOffset);
+    [scrollOffset setText:[NSString stringWithFormat:@"%g",contentOffset]];
+    
 }
 
 @end

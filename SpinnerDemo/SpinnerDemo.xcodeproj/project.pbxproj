@@ -15,26 +15,11 @@
 		47FE991114FAE0840076775C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FE991014FAE0840076775C /* AppDelegate.m */; };
 		47FE991414FAE0840076775C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FE991314FAE0840076775C /* ViewController.m */; };
 		47FE991714FAE0840076775C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47FE991514FAE0840076775C /* ViewController.xib */; };
-		47FE997D14FAE6BB0076775C /* libSpinnerView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47FE995E14FAE0FF0076775C /* libSpinnerView.a */; };
 		47FE998314FAF2B80076775C /* SpinnerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 47FE998214FAF2B80076775C /* SpinnerView.bundle */; };
+		E2D703211525A3A5008C5B59 /* SpinnerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D703201525A3A5008C5B59 /* SpinnerView.framework */; };
+		E2D703301525AEEF008C5B59 /* classy_fabric.png in Resources */ = {isa = PBXBuildFile; fileRef = E2D7032F1525AEEF008C5B59 /* classy_fabric.png */; };
+		E2D703341525B0B2008C5B59 /* bo_play_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = E2D703331525B0B2008C5B59 /* bo_play_pattern.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		47FE995D14FAE0FF0076775C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47FE995914FAE0FE0076775C /* SpinnerView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 47FE994914FAE0FE0076775C;
-			remoteInfo = SpinnerView;
-		};
-		47FE995F14FAE1120076775C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47FE995914FAE0FE0076775C /* SpinnerView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 47FE994814FAE0FE0076775C;
-			remoteInfo = SpinnerView;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		47FE98FC14FAE0840076775C /* SpinnerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpinnerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,8 +35,10 @@
 		47FE991214FAE0840076775C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		47FE991314FAE0840076775C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		47FE991614FAE0840076775C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		47FE995914FAE0FE0076775C /* SpinnerView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SpinnerView.xcodeproj; path = ../SpinnerView/SpinnerView.xcodeproj; sourceTree = "<group>"; };
 		47FE998214FAF2B80076775C /* SpinnerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SpinnerView.bundle; path = ../../Shared/SpinnerView.bundle; sourceTree = "<group>"; };
+		E2D703201525A3A5008C5B59 /* SpinnerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpinnerView.framework; path = ../SpinnerView/Products/SpinnerView.framework; sourceTree = "<group>"; };
+		E2D7032F1525AEEF008C5B59 /* classy_fabric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classy_fabric.png; sourceTree = "<group>"; };
+		E2D703331525B0B2008C5B59 /* bo_play_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bo_play_pattern.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47FE997D14FAE6BB0076775C /* libSpinnerView.a in Frameworks */,
 				47FE990114FAE0840076775C /* UIKit.framework in Frameworks */,
 				47FE990314FAE0840076775C /* Foundation.framework in Frameworks */,
 				47FE990514FAE0840076775C /* CoreGraphics.framework in Frameworks */,
+				E2D703211525A3A5008C5B59 /* SpinnerView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +76,7 @@
 		47FE98FF14FAE0840076775C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47FE995914FAE0FE0076775C /* SpinnerView.xcodeproj */,
+				E2D703201525A3A5008C5B59 /* SpinnerView.framework */,
 				47FE990014FAE0840076775C /* UIKit.framework */,
 				47FE990214FAE0840076775C /* Foundation.framework */,
 				47FE990414FAE0840076775C /* CoreGraphics.framework */,
@@ -122,17 +109,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		47FE995A14FAE0FE0076775C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				47FE995E14FAE0FF0076775C /* libSpinnerView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		47FE998414FAF2BB0076775C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E2D703331525B0B2008C5B59 /* bo_play_pattern.png */,
+				E2D7032F1525AEEF008C5B59 /* classy_fabric.png */,
 				47FE998214FAF2B80076775C /* SpinnerView.bundle */,
 			);
 			name = Resources;
@@ -152,7 +133,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				47FE996014FAE1120076775C /* PBXTargetDependency */,
 			);
 			name = SpinnerDemo;
 			productName = SpinnerDemo;
@@ -177,28 +157,12 @@
 			mainGroup = 47FE98F114FAE0840076775C;
 			productRefGroup = 47FE98FD14FAE0840076775C /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 47FE995A14FAE0FE0076775C /* Products */;
-					ProjectRef = 47FE995914FAE0FE0076775C /* SpinnerView.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				47FE98FB14FAE0840076775C /* SpinnerDemo */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		47FE995E14FAE0FF0076775C /* libSpinnerView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSpinnerView.a;
-			remoteRef = 47FE995D14FAE0FF0076775C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		47FE98FA14FAE0840076775C /* Resources */ = {
@@ -208,6 +172,8 @@
 				47FE990B14FAE0840076775C /* InfoPlist.strings in Resources */,
 				47FE991714FAE0840076775C /* ViewController.xib in Resources */,
 				47FE998314FAF2B80076775C /* SpinnerView.bundle in Resources */,
+				E2D703301525AEEF008C5B59 /* classy_fabric.png in Resources */,
+				E2D703341525B0B2008C5B59 /* bo_play_pattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +191,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		47FE996014FAE1120076775C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SpinnerView;
-			targetProxy = 47FE995F14FAE1120076775C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		47FE990914FAE0840076775C /* InfoPlist.strings */ = {
@@ -301,6 +259,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SpinnerView/Products\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SpinnerDemo/SpinnerDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../SpinnerView/";
@@ -315,6 +277,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../SpinnerView/Products\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SpinnerDemo/SpinnerDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../SpinnerView/";
@@ -344,6 +310,7 @@
 				47FE991C14FAE0840076775C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

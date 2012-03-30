@@ -11,24 +11,37 @@
 #import "SpinnerView.h"
 #import "ARCMacros.h"
 
+@interface SpinnerView ()
+
+@property (nonatomic,strong) Spinner *spinner;
+@property (nonatomic,strong) UIImageView *containerImageView;
+@property (nonatomic,strong) UIImageView *glowImageView;
+
+@end
 
 
 @implementation SpinnerView
-@dynamic indefinite;
+
+@synthesize spinner;
+@synthesize containerImageView;
+@synthesize glowImageView;
+
+#pragma mark - Initialization
 
 -(id)init
 {
     return [self initWithFrame:CGRectZero];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+-(id)initWithCoder:(NSCoder *)aDecoder {
     
-    UIImage *containerImage = SVBundleImage(@"containerImage");
-    UIImage *glowImage = SVBundleImage(@"glow");
-    self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, glowImage.size.width, glowImage.size.height)];
+    self = [super initWithCoder:aDecoder];
+    
     if (self) {
-        // Initialization code
+            
+        UIImage *containerImage = SV_BUNDLE_IMAGE(@"containerImage");
+        UIImage *glowImage = SV_BUNDLE_IMAGE(@"glow");
+        
         containerImageView = [[UIImageView alloc] initWithImage:containerImage];
         glowImageView = [[UIImageView alloc] initWithImage:glowImage];
         glowImageView.frame = CGRectMake(0,0, CGRectGetWidth(glowImageView.frame), CGRectGetHeight(glowImageView.frame));
@@ -39,41 +52,67 @@
         CGRect containerRect = containerImageView.frame;
         
         containerImageView.frame = CGRectMake(CGRectGetWidth(glowRect)/2-CGRectGetWidth(containerRect)/2, CGRectGetHeight(glowRect)/2-CGRectGetHeight(containerRect)/2, CGRectGetWidth(containerRect), CGRectGetHeight(containerRect));
-        //[glowImageView addSubview:containerImageView];
+        
         [containerImageView addSubview:spinner];
         [self addSubview:glowImageView];
         [self insertSubview:containerImageView aboveSubview:glowImageView];
     }
+    
+    return  self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+
+    UIImage *containerImage = SV_BUNDLE_IMAGE(@"containerImage");
+    UIImage *glowImage = SV_BUNDLE_IMAGE(@"glow");
+    
+    self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, glowImage.size.width, glowImage.size.height)];
+    
+    if (self) {
+
+        containerImageView = [[UIImageView alloc] initWithImage:containerImage];
+        glowImageView = [[UIImageView alloc] initWithImage:glowImage];
+        glowImageView.frame = CGRectMake(0,0, CGRectGetWidth(glowImageView.frame), CGRectGetHeight(glowImageView.frame));
+        spinner = [Spinner new];
+        spinner.frame = CGRectMake(0.5f, 0.5f, CGRectGetWidth(spinner.frame), CGRectGetHeight(spinner.frame));
+        containerImageView.alpha = 0.8;
+        CGRect glowRect = glowImageView.frame;
+        CGRect containerRect = containerImageView.frame;
+        
+        containerImageView.frame = CGRectMake(CGRectGetWidth(glowRect)/2-CGRectGetWidth(containerRect)/2, CGRectGetHeight(glowRect)/2-CGRectGetHeight(containerRect)/2, CGRectGetWidth(containerRect), CGRectGetHeight(containerRect));
+        
+        [containerImageView addSubview:spinner];
+        [self addSubview:glowImageView];
+        [self insertSubview:containerImageView aboveSubview:glowImageView];
+        
+    }
     return self;
 }
 
--(void)startIndefiniteMode
+#pragma mark - Animation Controls
+
+-(void)startAnimating
 {
-    //spinner.isIndefiniteMode = YES;
-    [self stopIndefiniteMode];
+    [self stopAnimating];
     spinner.progress = 99.9;
     glowImageView.alpha = 1.0;
-    [spinner startIndefiniteAnimation];
+    [spinner startAnimating];
 }
 
--(void)stopIndefiniteMode
+-(void)stopAnimating
 {
-    [spinner stopIndefiniteAnimation];
+    [spinner stopAnimating];
     self.progress = 0.0;
     
 }
 
+-(BOOL)isAnimating
+{
+    return [spinner isAnimating];    
+}
+
 #pragma mark - Progress Setter+Getter
-
--(BOOL)isIndefinite
-{
-    return spinner.isIndefiniteMode;
-}
-
--(BOOL)indefinite
-{
-    return spinner.isIndefiniteMode;
-}
 
 -(CGFloat)progress
 {
@@ -82,7 +121,7 @@
 
 -(void)setProgress:(CGFloat)progress
 {
-    if(!self.indefinite)
+    if(![self isAnimating])
     {
         spinner.progress = progress;
         glowImageView.alpha = progress/100.0;
