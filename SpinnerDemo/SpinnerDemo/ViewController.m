@@ -18,6 +18,9 @@
 
 @implementation ViewController
 @synthesize spinnerView;
+@synthesize scrollView;
+@synthesize scrollViewSpinner;
+@synthesize scrollOffset;
 @synthesize timer;
 
 #pragma mark - Initialization
@@ -27,6 +30,9 @@
     [timer invalidate];
     [timer release];
     [spinnerView release];
+    [scrollView release];
+    [scrollViewSpinner release];
+    [scrollOffset release];
     [super dealloc];
 }
 
@@ -34,14 +40,21 @@
 
 - (void)viewDidLoad
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
+    
+    [[self scrollView] setContentSize:CGSizeMake(320.0, 200)];
 }
 
 - (void)viewDidUnload
 {
     [self setSpinnerView:nil];
+    [self setScrollView:nil];
+    [self setScrollViewSpinner:nil];
+    [self setScrollViewSpinner:nil];
+    [self setScrollOffset:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -74,6 +87,18 @@
     [timer invalidate];
     self.timer = nil;
     [spinnerView startAnimating];
+}
+
+
+#pragma mark - UIScrollViewDelegate Adherence
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView_ {
+    
+    CGFloat contentOffset = scrollView_.contentOffset.y;
+    
+    scrollViewSpinner.progress = fabs(contentOffset);
+    [scrollOffset setText:[NSString stringWithFormat:@"%g",contentOffset]];
+    
 }
 
 @end

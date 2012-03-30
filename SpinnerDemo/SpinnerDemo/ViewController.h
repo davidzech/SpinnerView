@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <SpinnerView/SpinnerView.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIScrollViewDelegate>
 
 -(IBAction)definitePressed:(id)sender;
 -(IBAction)indefinitePressed:(id)sender;
 
 @property (retain, nonatomic) IBOutlet SpinnerView *spinnerView;
 
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet SpinnerView *scrollViewSpinner;
+@property (retain, nonatomic) IBOutlet UILabel *scrollOffset;
 @end
