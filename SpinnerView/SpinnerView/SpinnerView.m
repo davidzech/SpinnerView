@@ -11,10 +11,22 @@
 #import "SpinnerView.h"
 #import "ARCMacros.h"
 
+@interface SpinnerView ()
+
+@property (nonatomic,strong) Spinner *spinner;
+@property (nonatomic,strong) UIImageView *containerImageView;
+@property (nonatomic,strong) UIImageView *glowImageView;
+
+@end
 
 
 @implementation SpinnerView
-@dynamic indefinite;
+
+@synthesize spinner;
+@synthesize containerImageView;
+@synthesize glowImageView;
+
+#pragma mark - Initialization
 
 -(id)init
 {
@@ -47,33 +59,29 @@
     return self;
 }
 
--(void)startIndefiniteMode
+#pragma mark - Animation Controls
+
+-(void)startAnimating
 {
-    //spinner.isIndefiniteMode = YES;
-    [self stopIndefiniteMode];
+    [self stopAnimating];
     spinner.progress = 99.9;
     glowImageView.alpha = 1.0;
-    [spinner startIndefiniteAnimation];
+    [spinner startAnimating];
 }
 
--(void)stopIndefiniteMode
+-(void)stopAnimating
 {
-    [spinner stopIndefiniteAnimation];
+    [spinner stopAnimating];
     self.progress = 0.0;
     
 }
 
+-(BOOL)isAnimating
+{
+    return [spinner isAnimating];    
+}
+
 #pragma mark - Progress Setter+Getter
-
--(BOOL)isIndefinite
-{
-    return spinner.isIndefiniteMode;
-}
-
--(BOOL)indefinite
-{
-    return spinner.isIndefiniteMode;
-}
 
 -(CGFloat)progress
 {
@@ -82,7 +90,7 @@
 
 -(void)setProgress:(CGFloat)progress
 {
-    if(!self.indefinite)
+    if(![self isAnimating])
     {
         spinner.progress = progress;
         glowImageView.alpha = progress/100.0;

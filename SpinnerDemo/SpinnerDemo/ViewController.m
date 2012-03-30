@@ -55,7 +55,7 @@
 
 -(void)definitePressed:(id)sender
 {
-    [spinner stopIndefiniteMode];
+    [spinner stopAnimating];
     [timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(updateSpinner:) userInfo:nil repeats:YES];
 }
@@ -64,7 +64,7 @@
 {
     [timer invalidate];
     self.timer = nil;
-    [spinner startIndefiniteMode];
+    [spinner startAnimating];
 }
 
 @end

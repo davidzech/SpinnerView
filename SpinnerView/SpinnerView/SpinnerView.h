@@ -11,15 +11,11 @@
 #import "Spinner.h"
 
 @interface SpinnerView : UIView
-{
-    Spinner *spinner;
-    UIImageView *containerImageView;
-    UIImageView *glowImageView;
-}
 
--(void)startIndefiniteMode;
--(void)stopIndefiniteMode;
+-(void)startAnimating;
+-(void)stopAnimating;
+-(BOOL)isAnimating;
 
 @property (nonatomic) CGFloat progress;
-@property (nonatomic, readonly) BOOL indefinite;
+
 @end
