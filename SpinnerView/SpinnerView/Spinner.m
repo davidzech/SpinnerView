@@ -14,19 +14,78 @@
 
 @interface Spinner ()
 
+@property (nonatomic,strong) UIImage *spinnerImage;
+@property (nonatomic,strong) NSTimer *indefiniteTimer;
+
 -(void)rotate;
 
 @end
 
 @implementation Spinner
 
-@synthesize progress = _progress, isIndefiniteMode=_isIndefiniteMode;
+@synthesize progress = _progress;
+@synthesize spinnerImage = spinnerImage_;
+@synthesize indefiniteTimer = indefiniteTimer_;
 
-UIImage *rotateImageByDegrees(UIImage *image, CGFloat degrees)
+#pragma mark - Initialization
+
+- (id)init
+{
+    
+    UIImage *containerImage = SV_BUNDLE_IMAGE(@"containerImage");
+    
+    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, containerImage.size.width, containerImage.size.height)];
+    if (self) {
+        
+        self.backgroundColor = [UIColor clearColor];
+        self.spinnerImage = SAFE_ARC_RETAIN(SV_BUNDLE_IMAGE(@"spinner"));
+        
+        
+    }
+    
+    return self;
+}
+
+#pragma mark - Animation Controls
+
+-(void)startAnimating
+{
+    if(![self isAnimating])
+    {
+        SAFE_ARC_AUTORELEASE_POOL_START();
+        self.indefiniteTimer = SAFE_ARC_RETAIN([NSTimer scheduledTimerWithTimeInterval:0.025 target:self selector:@selector(rotate) userInfo:nil repeats:YES]);
+        SAFE_ARC_AUTORELEASE_POOL_END(); 
+    }
+}
+
+-(void)stopAnimating
+{
+    if([self isAnimating])
+    {
+        [self.indefiniteTimer invalidate];
+        SAFE_ARC_RELEASE(self.indefiniteTimer);
+    }
+}
+
+- (BOOL)isAnimating
+{
+    return self.indefiniteTimer && [self.indefiniteTimer isValid];
+    
+}
+
+- (void)setProgress:(float)progress {
+    
+    _progress = progress;
+    [self setNeedsDisplay];
+    
+}
+
+#pragma mark - Drawing
+
+-(UIImage *)rotateImage:(UIImage *)image byDegrees:(CGFloat)degrees
 {
         // Create the bitmap context
-        UIImage* self = image;
-        CGSize size = CGSizeMake(self.size.width *self.scale, self.size.height *self.scale);
+        CGSize size = CGSizeMake(image.size.width * image.scale, image.size.height * image.scale);
         UIGraphicsBeginImageContext(size);
         CGContextRef bitmap = UIGraphicsGetCurrentContext();
         
@@ -38,33 +97,16 @@ UIImage *rotateImageByDegrees(UIImage *image, CGFloat degrees)
         
         // Now, draw the rotated/scaled image into the context
         CGContextScaleCTM(bitmap, 1.0, -1.0);
-        CGContextDrawImage(bitmap, CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height), [self CGImage]);
+        CGContextDrawImage(bitmap, CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height), [image CGImage]);
         
         UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         return newImage;
 }
 
-UIImage *rotateImageByRadians(UIImage *image, CGFloat radians)
+-(UIImage *)rotateImage:(UIImage *)image byRadians:(CGFloat)radians
 {
-    return rotateImageByDegrees(image, RadiansToDegrees(radians));
-}
-
-- (id)init
-{
-
-    UIImage *containerImage = SVBundleImage(@"containerImage");
-    
-    self = [super initWithFrame:CGRectMake(0.0f, 0.0f, containerImage.size.width, containerImage.size.height)];
-    if (self) {
-        
-        self.backgroundColor = [UIColor clearColor];
-        _spinnerImage = SAFE_ARC_RETAIN(SVBundleImage(@"spinner"));
-        
-        
-    }
-    
-    return self;
+    return [self rotateImage:image byDegrees:RadiansToDegrees(radians)];
 }
 
 -(void)rotate
@@ -74,45 +116,15 @@ UIImage *rotateImageByRadians(UIImage *image, CGFloat radians)
     [self setNeedsDisplay];
 }
 
--(void)startIndefiniteAnimation
-{
-    if(!_isIndefiniteMode)
-    {
-    SAFE_ARC_AUTORELEASE_POOL_START();
-    indefiniteTimer = SAFE_ARC_RETAIN([NSTimer scheduledTimerWithTimeInterval:0.025 target:self selector:@selector(rotate) userInfo:nil repeats:YES]);
-        _isIndefiniteMode = YES;
-    SAFE_ARC_AUTORELEASE_POOL_END(); 
-    }
-}
-
--(void)stopIndefiniteAnimation
-{
-    if(_isIndefiniteMode)
-    {
-    [indefiniteTimer invalidate];
-        SAFE_ARC_RELEASE(indefiniteTimer);
-        _isIndefiniteMode = NO;
-    }
-}
-
-- (void)setProgress:(float)progress {
-    
-    _progress = progress;
-    [self setNeedsDisplay];
-    
-}
-
-
-
 - (void)drawRect:(CGRect)rect {
     
     [super drawRect:rect];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGSize size = _spinnerImage.size;
+    CGSize size = self.spinnerImage.size;
     rect = CGRectMake(rect.origin.x+4, rect.origin.y+4, size.width, size.height);
-    if(!_isIndefiniteMode)
+    if(!self.indefiniteTimer && [self.indefiniteTimer isValid])
     {
     UIGraphicsBeginImageContext(size);
     CGContextRef maskContext = UIGraphicsGetCurrentContext();
@@ -132,16 +144,17 @@ UIImage *rotateImageByRadians(UIImage *image, CGFloat radians)
     float progress = 0.75 + (_progress/400);
    
      
+    UIImage *rotatedImage = [self rotateImage:self.spinnerImage byRadians:((_progress/100) *360) *(M_PI/180)];
     
+    [rotatedImage drawInRect:rect blendMode:kCGBlendModeNormal alpha:([self isAnimating] ? 1.0 : progress)];
     
-    [rotateImageByRadians(_spinnerImage, ((_progress/100) *360) *(M_PI/180)) drawInRect:rect blendMode:kCGBlendModeNormal alpha:_isIndefiniteMode ? 1.0 : progress];
 }
 
 -(void)dealloc
 {
-    [indefiniteTimer invalidate];
-    SAFE_ARC_RELEASE(indefiniteTimer);
-    SAFE_ARC_RELEASE(_spinnerImage);
+    [self.indefiniteTimer invalidate];
+    SAFE_ARC_RELEASE(self.indefiniteTimer);
+    SAFE_ARC_RELEASE(self.spinnerImage);
     SAFE_ARC_SUPER_DEALLOC();
 }
 

@@ -8,18 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Spinner : UIView {
+@interface Spinner : UIView
 
-    UIImage *_spinnerImage;
-    float _progress;
-    BOOL _isIndefiniteMode;
-    NSTimer *indefiniteTimer;
-}
-
--(void)startIndefiniteAnimation;
--(void)stopIndefiniteAnimation;
+-(void)startAnimating;
+-(void)stopAnimating;
+-(BOOL)isAnimating;
 
 @property (nonatomic, assign) float progress;
-@property (nonatomic, assign) BOOL isIndefiniteMode;
 
 @end
