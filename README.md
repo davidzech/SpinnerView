@@ -42,6 +42,8 @@ Credits
 Thanks to @andrewroycarter for helping with the Core Graphics code!
 I also copied a lot of your readme stuff!
 
+Thanks to burtlo for adding more cool fixes, updates, and demos!
+
 
 License - MIT
 -------------
